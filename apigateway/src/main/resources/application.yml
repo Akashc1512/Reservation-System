@@ -1,0 +1,39 @@
+server:
+  port: 8888
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: reservations_route
+          uri: http://localhost:8006 # Target service URL
+          predicates:
+            - Path=/reservations/** # Incoming URL pattern
+        - id: payments_route
+          uri: http://localhost:8011 # Target service URL
+          predicates:
+            - Path=/payments/** # Incoming URL pattern
+        - id: hotels_route
+          uri: http://localhost:8005 # Target service URL
+          predicates:
+            - Path=/hotels/** # Incoming URL pattern
+        - id: customers_route
+          uri: http://localhost:8003 # Target service URL
+          predicates:
+            - Path=/customers/** # Incoming URL pattern
+        - id: notifications_route
+          uri: http://localhost:8010 # Target service URL
+          predicates:
+            - Path=/notifications/** # Incoming URL pattern
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
