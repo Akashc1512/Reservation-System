@@ -40,5 +40,5 @@ This system is divided into multiple microservices, each handling a specific res
 - **Caching**: Redis
 - **Message Queue**: Apache Kafka
 - **Build Tool**: Maven
-- **Deployment**: Docker, Kubernetes (Optional for scaling)
+- **Deployment**: Docker, Kubernetes
 
